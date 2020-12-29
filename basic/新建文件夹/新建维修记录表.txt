@@ -1,0 +1,63 @@
+create table if not exists maintain_recode_info
+(
+	ID bigint auto_increment comment '主键ID'
+		primary key,
+	REPAIR_MAN varchar(36) null comment '维修人',
+	REPAIR_MAN_PHONE varchar(18) null comment '维修人电话',
+	OVERDUE_PLAN_REASON varchar(200) null comment '延期安排原因',
+	REAL_REPAIR_MAN varchar(24) null comment '实际维修人',
+	OVERDUE_DAYS int null comment '逾期天数',
+	ACCEPTOR varchar(36) null comment '验收人',
+	BREAKDOWN_REASON varchar(200) null comment '故障原因',
+	DISPOSE_STATE varchar(24) null comment '处理状态：待维修、维修中、维修完成、维修未完成、关闭',
+	NOT_COMPLETE_REASON varchar(200) null comment '未完成原因',
+	OVERDUE_REPAIR_REASON varchar(200) null comment '延期维修原因',
+	REAL_REPAIR_COMPLETE_TIME datetime null comment '实际维修时间',
+	ACCEPTANCE_TIME datetime null comment '验收时间',
+	CREATE_TIME datetime null comment '创建时间',
+	REPAIRS_APPLY_ID bigint null comment '保修申请ID',
+	PREDICT_MAINTAIN_TIME datetime null comment '预计维修时间'
+)
+comment '维修记录列表';
+
+
+
+create table f_prolong_employ
+(
+	ID bigint auto_increment comment '主键ID' primary key,
+	PRACTICAL_CODE varchar(36) collate utf8_bin not null comment '实物编码',
+	PREDICT_SCRAP_DATE datetime default CURRENT_TIMESTAMP not null comment '上次预计报废时间',
+	SCRAP_UPDATE_DATE datetime not null comment '报废时间更新至',
+	OPERATOR varchar(36) not null comment '操作人',
+	OPERATION_TIME datetime not null comment '操作时间',
+	SCRAP_CAUSE varchar(200) not null comment '上次待报废原因'
+);
+
+create index index_prolong_practice_code
+	on f_prolong_employ (PRACTICAL_CODE);
+
+
+
+create table if not exists f_repairs_apply_info
+(
+	ID bigint auto_increment comment '主键ID'
+		primary key,
+	PRACTICAL_CODE varchar(36) not null comment '实物编号',
+	CURRENT_FACILITY_STATE varchar(24) null comment '当前设备状态',
+	BREAKDOWN_PICTURE varchar(255) null comment '故障图片',
+	BREAKDOWN_DESCRIBE varchar(255) null comment '故障描述',
+	REPAIR_APPLY_MAN varchar(36) null comment '报修人',
+	REPAIR_APPLY_TIME datetime null comment '报修时间',
+	MAINTAIN_DEADLINE datetime null comment '维修期限',
+	DISPOSE_STATE varchar(24) null comment '处理状态：待维修、维修中、维修未完成、维修完成、关闭',
+	OVERDUE_STATE varchar(12) null comment '逾期状态：正常、逾期',
+	CLOSE_REASON varchar(100) null comment '关闭原因',
+	CLOSE_TIME datetime null comment '关闭时间',
+	NEW_MAINTAIN_DEADLINE datetime null comment '最新维修期限',
+	CATEORY2 varchar(50) null comment '第二种类：用来取维修期限配置'
+)
+comment '报修申请记录列表';
+
+create index index_repair_practice_code
+	on f_repairs_apply_info (PRACTICAL_CODE);
+
