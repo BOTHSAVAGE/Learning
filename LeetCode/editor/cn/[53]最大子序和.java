@@ -16,8 +16,17 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    //双层循环，第一层遍历nums中每一个，然后第二层遍历就从当前i开始，用 Math.max取最大
     public int maxSubArray(int[] nums) {
-
+        int res = Integer.MIN_VALUE;
+        for (int i = 0; i < nums.length; i++) {
+            int all = 0;
+            for (int j = i; j < nums.length; j++) {
+                all += nums[j];
+                res = Math.max(all, res);
+            }
+        }
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
