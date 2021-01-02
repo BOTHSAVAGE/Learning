@@ -1,27 +1,88 @@
 ## 摘要
 
-## 概念
+### 实例
 
-[1].[把自己牛逼到了，在SpringBoot用AOP切面实现一个权限校验...](https://mp.weixin.qq.com/s/2e8x9n4p49kZzM2Fr2cTVw)
+### pom
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-aop</artifactId>
+</dependency>
+```
+
+### annotation
+
+```java
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+public @interface PermissionAnnotation{}
+```
+
+### aspect
+
+```java
+@Aspect
+@Component
+@Order(1)
+public class PermissionFirstAdvice {
+
+    @Pointcut("@annotation(com.mu.demo.annotation.PermissionAnnotation)")
+    private void permissionCheck() {
+    }
+
+    @Around("permissionCheck()")
+    public Object permissionCheckFirst(ProceedingJoinPoint joinPoint) throws Throwable {
+        System.out.println(System.currentTimeMillis());
+
+        //获取请求参数，详见接口类
+        Object[] objects = joinPoint.getArgs();
+        Long id = ((JSONObject) objects[0]).getLong("id");
+        String name = ((JSONObject) objects[0]).getString("name");
+
+        // id小于0则抛出非法id的异常
+        if (id < 0) {
+            return JSON.parseObject("{\"message\":\"illegal id\",\"code\":403}");
+        }
+        return joinPoint.proceed();
+    }
+}
+```
+
+### controller
+
+```java
+package com.example.demo;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping(value = "/permission")
+public class TestController {
+    
+    @RequestMapping(value = "/check", method = RequestMethod.POST)
+    @PermissionsAnnotation()
+    public JSONObject getGroupList(@RequestBody JSONObject request) {
+        return JSON.parseObject("{\"message\":\"SUCCESS\",\"code\":200}");
+    }
+}
+```
 
 
 
 
 
-### AOP术语
 
-- 
+
+
+
+
+
+
 
 ## 参考
 
-[1].[Spring AOP——简单粗暴，小白教学](https://blog.csdn.net/qq_41981107/article/details/87920537)
-
-[2].[CGLib动态代理](https://www.cnblogs.com/wyq1995/p/10945034.html)
-
-https://www.cnblogs.com/joy99/p/10941543.html
-
-https://www.cnblogs.com/bj-xiaodao/p/10777914.html#_label0_0
-
-https://blog.csdn.net/asdasdasd123123123/article/details/82081870
-
-https://blog.csdn.net/qq_30359699/article/details/105603949
+[1].[把自己牛逼到了，在SpringBoot用AOP切面实现一个权限校验...](https://mp.weixin.qq.com/s/2e8x9n4p49kZzM2Fr2cTVw)
