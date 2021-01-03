@@ -26,19 +26,46 @@ tags:
 
 ### aop关键词
 
-- **连接点(Joinpoint)**  连接点就是增强的实现
-- **切点(PointCut)**就是那些需要应用切面的方法 
-- **增强(Advice)** 
-  - **前置通知(before)**
-  - **后置通知(after)**
-  - **异常通知(afterThrowing)**
-  - **返回通知(afterReturning)**
-  - **环绕通知(around)**
-- **目标对象(Target)**
-- **织入(Weaving)**添加到对目标类具体连接点上的过程。
-- **代理类(Proxy)** 一个类被AOP织入增强后，就产生了一个代理类。
-- **切面(Aspect）** 切面由切点和增强组成，它既包括了横切逻辑的定义，也包括了连接点的定义
-![](http://assets.processon.com/chart_image/5fec99ba7d9c0863d3ffd467.png)
+- 连接点(Joinpoint):连接点就是增强的实现
+- 切点(PointCut):就是那些需要应用切面的方法 
+- 增强(Advice)
+  - 前置通知(before)
+  - 后置通知(after)
+  - 异常通知(afterThrowing)
+  - 返回通知(afterReturning)
+  - 环绕通知(around)
+- 目标对象(Target)
+- 织入(Weaving):添加到对目标类具体连接点上的过程。
+- 代理类(Proxy):一个类被AOP织入增强后，就产生了一个代理类。
+- 切面(Aspect):切面由切点和增强组成，它既包括了横切逻辑的定义，也包括了连接点的定义
+  ![](https://gitee.com/BothSavage/PicGo/raw/master/image/20210102170844.png)
+### 五种返回类型
+
+* @Before： 标识一个前置增强方法，相当于BeforeAdvice的功能. 
+* @After： final增强，不管是抛出异常或者正常退出都会执行. 
+* @AfterReturning： 后置增强，似于AfterReturningAdvice, 方法正常退出时执行.
+*  @AfterThrowing： 异常抛出增强，相当于ThrowsAdvice. @Around： 环绕增强，相当于MethodInterceptor. 
+
+### 连接点限制
+
+- 任意公共方法的执行：execution(public * *(..))
+- 任何一个以“set”开始的方法的执行：execution(* set*(..))
+- AccountService 接口的任意方法的执行：execution(* com.xyz.service.AccountService.*(..))
+- 定义在service包里的任意方法的执行： execution(* com.xyz.service.*.*(..))
+- 定义在service包和所有子包里的任意类的任意方法的执行：execution(* com.xyz.service..*.*(..))
+
+- 定义在pointcutexp包和所有子包里的JoinPointObjP2类的任意方法的执行：execution(*com.test.spring.aop.pointcutexp..JoinPointObjP2.*(..))")
+- pointcutexp包里的任意类： within(com.test.spring.aop.pointcutexp.*)
+- pointcutexp包和所有子包里的任意类：within(com.test.spring.aop.pointcutexp..*)
+- 实现了Intf接口的所有类,如果Intf不是接口,限定Intf单个类：this(com.test.spring.aop.pointcutexp.Intf)
+- 当一个实现了接口的类被AOP的时候,用getBean方法必须cast为接口类型,不能为该类的类型
+- 带有@Transactional标注的所有类的任意方法： @within(org.springframework.transaction.annotation.Transactional) @target(org.springframework.transaction.annotation.Transactional)
+- 带有@Transactional标注的任意方法：
+  @annotation(org.springframework.transaction.annotation.Transactional)
+  @within和@target针对类的注解,@annotation是针对方法的注解
+- 参数带有@Transactional标注的方法：@args(org.springframework.transaction.annotation.Transactional)
+- 参数为String类型(运行是决定)的方法： args(String)
+
 ## Spring aop测试
 
 ### pom
