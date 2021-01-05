@@ -5,3 +5,7 @@ https://mp.weixin.qq.com/s/i4uxNaHP680UiQKbIJHYVQ
 https://zhuanlan.zhihu.com/p/117372155
 https://zhuanlan.zhihu.com/p/65691417
 https://zhuanlan.zhihu.com/p/92880181
+
+设计模式(0)-入门
+
+设计模式(1)-单例模式
