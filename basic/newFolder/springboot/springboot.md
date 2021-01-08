@@ -85,3 +85,12 @@ spring-boot-starter.*   场景
 @importResource
 
 * 把bean.xml里面的东西注入
+
+
+
+
+
+@configurationproperty(prefix = "")
+
+@component（如果全局配置@EnableConfigurationProperties，就比用每一个去指定component）
+
