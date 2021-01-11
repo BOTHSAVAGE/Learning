@@ -1,8 +1,18 @@
+---
+title: Commit规范和Idea插件
+date: 2021-01-02  12:40:11
+categories:
+- 杂项
+tags:
+- 工具
+- idea
+- git
+---
 ## 摘要
 
 * 在Idea中安装commit模板信息
 * commit规范模板格式介绍
-
+<!--more-->
 ## 简介
 
 此commit规范是基于augular，规范的编写Commit可以在Idea或者命令行中快速定位修改，或者快速定位问题编号等。
