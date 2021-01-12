@@ -1,8 +1,18 @@
+---
+title: Springboot系列(2)——Validator-1-入门
+date: 2020-12-29  13:13:12
+categories:
+- Spring Boot
+tags:
+- Spring Boot
+- 表单验证
+- demo
+---
 ## 摘要
-
 * 介绍SpringBoot常见校验规则
 * 小Demo
 
+<!--more-->
 ## 校验规则
 
 ```java
