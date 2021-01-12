@@ -1,6 +1,19 @@
+---
+title: SpringBoot系列(1)——AOP-2-静态代理与动态代理
+date: 2020-12-29  12:13:11
+categories:
+- Spring Boot
+tags:
+- Spring Boot
+- aop
+- demo
+---
 ## 摘要
 
 * 分别演示静态代理和动态代理
+
+<!--more-->
+
 ## 静态代理
 
 ### 手动代理
@@ -212,9 +225,3 @@ UserServiceImpl userService;
 [2].[java反射和代理](https://www.cnblogs.com/wyq1995/p/10936286.html)
 
 [3].[惊人！Spring5 AOP 默认使用Cglib? 从现象到源码深度分析](https://www.cnblogs.com/coderxiaohei/p/11758239.html)
-
-> 本文作者: Both Savage
-
->本文链接: https://bothsavage.github.io/2020/12/29/SpringBoot/SpringBoot%E7%B3%BB%E5%88%97(2)%E2%80%94%E2%80%94AOP-%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E4%B8%8E%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/
-  
->版权声明: 本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！

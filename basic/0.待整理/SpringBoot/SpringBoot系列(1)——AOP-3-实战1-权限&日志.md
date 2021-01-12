@@ -1,7 +1,21 @@
+---
+title: SpringBoot系列(1)——AOP-3-实战1-权限&日志
+date: 2020-12-29  13:13:11
+categories:
+- Spring Boot
+tags:
+- Spring Boot
+- aop
+- demo
+---
 ## 摘要
 
 * 实现简单的权限控制
 * 实现简单的日志
+
+
+<!--more-->
+
 ## 权限控制
 
 ### pom
@@ -237,8 +251,3 @@ public class TestController {
 
 [5].[使用SpringBoot AOP 记录操作日志、异常日志](https://www.cnblogs.com/wm-dv/p/11735828.html)
 
-> 本文作者: Both Savage
-  
->本文链接: https://bothsavage.github.io/2020/12/29/SpringBoot/SpringBoot%E7%B3%BB%E5%88%97(3)%E2%80%94%E2%80%94AOP%E5%AE%9E%E6%88%981-%E6%9D%83%E9%99%90&%E6%97%A5%E5%BF%97/
-  
->版权声明: 本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！
