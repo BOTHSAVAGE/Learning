@@ -1,0 +1,25 @@
+ docker run -i -t ubuntu:15.10 /bin/bash 
+$ docker run -it ubuntu /bin/bash  可以写在一起
+
+
+-it 后面 要有bash 没有bash的怎么去交互
+
+-i 伪终端 -t 交互
+
+
+-d 后台
+
+docker ps -a
+docker image
+
+
+docker start 前缀
+docker stop
+docker attach 前缀
+exit
+
+
+
+
+docker run -itd  -p host:docker -v d:\hehe:/data  -e "MINIO_ACCESS_KEY=admin" -e "MINIO_SECRET_KEY=admin123456"  minio/minio server /data  
+懂的都懂
